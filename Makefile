@@ -1,4 +1,4 @@
-.PHONY: demo up down logs backup restore check
+.PHONY: demo up down logs backup restore check test test-demo test-production gitops-validate
 
 demo: up check backup
 	@echo "Demo complete. Try: make logs"
@@ -20,3 +20,14 @@ backup:
 
 restore:
 	bash scripts/restore.sh
+
+test: test-demo
+
+test-demo:
+	@TEST_MODE=demo python3 tests/run_tests.py
+
+test-production:
+	@TEST_MODE=production python3 tests/run_tests.py
+
+gitops-validate:
+	@python3 scripts/gitops_validate.py

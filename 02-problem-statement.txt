@@ -1,0 +1,35 @@
+02 - Problem Statement (Repository Validation Contract)
+
+Purpose
+This document defines the business context, technical requirements, and evaluation criteria that this repository is expected to satisfy.
+It is intentionally company- and role-agnostic.
+
+Business context (generic)
+- A team runs workloads on Kubernetes and depends on a relational database.
+- Delivery must be repeatable and reviewable, with low operational risk.
+- Security posture must be demonstrable with clear, auditable evidence.
+
+Technical requirements (what must be true)
+1) GitOps-friendly delivery patterns
+   - Changes are reviewable as code (YAML/IaC) and can be validated automatically.
+   - The repository includes a minimal GitOps example that is realistic (not placeholder).
+
+2) Practical reliability foundations
+   - Repeatable environment for reliability drills (backup/restore, replication checks).
+   - Operational documentation (runbooks + SLO template) that matches real commands.
+
+3) Security-by-default habits
+   - No secrets committed.
+   - CI includes secret scanning and basic quality gates.
+   - GitOps manifests demonstrate least privilege and basic Kubernetes hardening defaults.
+
+Test execution contract
+- `TEST_MODE=demo` must run without external dependencies.
+- `TEST_MODE=production` must run real integrations when explicitly acknowledged and properly configured.
+- If production prerequisites are missing, the runner must report exactly what is missing and how to re-run.
+
+Top 3 pain points this repository must solve
+1) “Infrastructure changes aren’t reviewable or repeatable.”
+2) “Security posture is unclear and hard to audit.”
+3) “Operational reliability drills exist only as tribal knowledge.”
+
